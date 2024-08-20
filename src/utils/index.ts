@@ -22,7 +22,7 @@ export class Model {
     })
   }
 
-  static toImageURL (offscreen: OffscreenCanvas) {
+  static toImageURL (offscreen: OffscreenCanvas): Promise<string> {
     return new Promise((resolve, reject) => {
       // 将 OffscreenCanvas 转换为 Blob 对象
       offscreen.convertToBlob().then(blob => {
@@ -64,7 +64,7 @@ export class Model {
     }
   }
 
-  static async processImage(file: string | File) {
+  static async processImage(file: string | File): Promise<string> {
     if (file instanceof File) {
       file = await this.toDataURL(file)
     }
@@ -91,7 +91,7 @@ export class Model {
 
     if (!ctx) {
       console.error('不支持OffscreenCanvas')
-      return
+      throw new Error("不支持OffscreenCanvas");
     }
 
     // Draw original image output to canvas
