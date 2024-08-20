@@ -1,4 +1,4 @@
-import { AutoModel, AutoProcessor, env, RawImage } from '@huggingface/transformers';
+import { AutoModel, AutoProcessor, env, PreTrainedModel, Processor, RawImage } from '@huggingface/transformers';
 
 
 // Since we will download the model from the Hugging Face Hub, we can skip the local model check
@@ -8,8 +8,8 @@ env.allowLocalModels = false;
 env.backends.onnx.wasm.proxy = true;
 
 export class Model {
-  static model
-  static processor
+  static model: PreTrainedModel
+  static processor: Processor
 
   static toDataURL(file: File): Promise<string> {
     return new Promise((resolve) => {
@@ -128,10 +128,12 @@ export const selectFile = (options: FileUploadOptions): Promise<File[]> => {
       ? input.setAttribute('multiple', 'multiple')
       : input.removeAttribute('multiple')
     // 绑定事件
-    input.onchange = function () {
-      const files = Array.from(this.files)
+    input.onchange = function (event) {
+
+      const input = event.target as HTMLInputElement;
       // 获取文件列表
-      if (files) {
+      if (input?.files) {
+        const files = Array.from(input.files)
         resolve(files)
       } else {
         reject(new Error('No files selected'))
