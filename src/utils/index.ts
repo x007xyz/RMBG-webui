@@ -5,7 +5,7 @@ import { AutoModel, AutoProcessor, env, PreTrainedModel, Processor, RawImage } f
 env.allowLocalModels = false;
 
 // Proxy the WASM backend to prevent the UI from freezing
-env.backends.onnx.wasm.proxy = true;
+env.backends.onnx.wasm?.proxy && (env.backends.onnx.wasm.proxy = true);
 
 export class Model {
   static model: PreTrainedModel
