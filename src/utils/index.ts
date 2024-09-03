@@ -1,4 +1,5 @@
 import { AutoModel, AutoProcessor, env, PreTrainedModel, Processor, RawImage } from '@huggingface/transformers';
+import { PretrainedModelOptions } from 'node_modules/@huggingface/transformers/types/utils/hub';
 
 
 // Since we will download the model from the Hugging Face Hub, we can skip the local model check
@@ -36,13 +37,14 @@ export class Model {
   }
 
   static async loadModel() {
+    const options: PretrainedModelOptions = {config: { model_type: 'custom' }, device: 'wasm'}
+    if ((navigator as any).gpu) {
+      options.device = 'webgpu'
+      options.dtype = 'fp32'
+      console.log('支持GPU')
+    }
     if (!this.model) {
-      this.model = await AutoModel.from_pretrained('briaai/RMBG-1.4', {
-        // Do not require config.json to be present in the repository
-        config: { model_type: 'custom' },
-        device: 'webgpu',
-        dtype: 'fp32',
-      });
+      this.model = await AutoModel.from_pretrained('briaai/RMBG-1.4', options);
     }
   
     if (!this.processor) {

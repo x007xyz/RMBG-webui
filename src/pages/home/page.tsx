@@ -5,6 +5,7 @@ import { ImageDown, ImageUp } from "lucide-react"
 import { selectFile, Model } from "@/utils"
 import { useEffect, useMemo, useState } from "react"
 import Loading from "./components/Loading"
+import Loading2 from "./components/Loading2"
 
 const HomePage = () => {
 
@@ -53,9 +54,10 @@ const HomePage = () => {
 
   return (
     <div className="mx-auto max-w-2xl p-6">
-      <AspectRatio ratio={4 / 3} className="bg-muted rounded-lg">
+      <AspectRatio ratio={4 / 3} className="bg-muted rounded-lg flex items-center justify-center">
         {mode === 'source' && sourceImage && <img className="object-contain w-full h-full absolute" src={sourceImage} alt="" />}
         {processImage && mode === 'process' && <img className="object-contain w-full h-full absolute" src={processImage} alt="" />}
+        {sourceImage && !processImage && <Loading2></Loading2>}
         <div className="absolute bottom-4 right-4">
           <Switch id="airplane-mode" disabled={!canSwitch} checked={mode === 'process'} onCheckedChange={onCheckedChange}/>
         </div>
