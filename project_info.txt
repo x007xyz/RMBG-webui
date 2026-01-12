@@ -1,0 +1,3 @@
+作品访问URL地址: https://removebg-webui.46338883.er.aliyun-esa.net/
+Github仓库地址: https://github.com/x007xyz/RMBG-webui
+作品介绍: 基于React 18和Hugging Face Transformers.js构建的纯浏览器端AI背景移除应用。无需服务器交互，直接在本地利用WebGPU/WASM运行`briaai/RMBG-1.4`模型进行推理，实现高效且隐私安全的图片去底功能。项目集成PWA支持，采用Tailwind CSS和Shadcn UI打造现代化交互界面，支持实时处理与离线使用。

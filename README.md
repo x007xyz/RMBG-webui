@@ -1,30 +1,59 @@
-# React + TypeScript + Vite
+# RMBG WebUI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+一个基于浏览器的 AI 抠图工具，完全在本地运行，保护您的隐私。
 
-Currently, two official plugins are available:
+## ✨ 特性
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🔒 **本地处理**：使用 [Transformers.js](https://huggingface.co/docs/transformers.js) 在浏览器中直接运行 [RMBG-1.4](https://huggingface.co/briaai/RMBG-1.4) 模型，无需上传图片到服务器。
+- 🚀 **高性能**：自动检测并利用 WebGPU 加速推理（如果浏览器支持），否则回退到 WASM。
+- ⚡ **实时预览**：提供原图与处理后图片的实时对比滑块。
+- 🎨 **现代界面**：基于 React + Tailwind CSS + Radix UI 构建的响应式界面。
+- 📥 **一键下载**：支持高清下载处理后的透明背景图片。
 
-## Expanding the ESLint configuration
+## 🛠️ 技术栈
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- [React](https://react.dev/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Radix UI](https://www.radix-ui.com/)
+- [Transformers.js](https://huggingface.co/docs/transformers.js)
 
-- Configure the top-level `parserOptions` property like this:
+## 🚀 快速开始
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+1. 克隆项目
+
+```bash
+git clone https://github.com/your-username/rmbg-webui.git
+cd rmbg-webui
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+2. 安装依赖
+
+```bash
+pnpm install
+```
+
+3. 启动开发服务器
+
+```bash
+pnpm dev
+```
+
+4. 构建生产版本
+
+```bash
+pnpm build
+```
+
+## 📝 许可证
+
+MIT License
+
+
+## 🌐 托管声明
+
+本项目由阿里云 ESA 提供加速、计算和保护。
+
+![阿里云 ESA Pages](/public/esa-banner.png)
+
+> 阿里云 ESA Pages - 构建、加速并保护你的网站
