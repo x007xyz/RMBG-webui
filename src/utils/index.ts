@@ -1,6 +1,11 @@
 import { AutoModel, AutoProcessor, env, PreTrainedModel, Processor, RawImage } from '@huggingface/transformers';
 import { PretrainedModelOptions } from 'node_modules/@huggingface/transformers/types/utils/hub';
 
+// 配置模型文件来源：直接使用阿里云 OSS（解决国内访问问题和 CORS 问题）
+// OSS 路径格式：https://fly-cut.oss-cn-hangzhou.aliyuncs.com/models/{model}/resolve/{revision}/{file}
+env.remoteHost = 'https://fly-cut.oss-cn-hangzhou.aliyuncs.com/';
+env.remotePathTemplate = 'models/{model}/resolve/{revision}/';
+console.log('✓ 使用阿里云 OSS 作为模型文件源');
 
 // Since we will download the model from the Hugging Face Hub, we can skip the local model check
 env.allowLocalModels = false;
@@ -43,6 +48,7 @@ export class Model {
       options.dtype = 'fp32'
       console.log('支持GPU')
     }
+    
     if (!this.model) {
       this.model = await AutoModel.from_pretrained('briaai/RMBG-1.4', options);
     }

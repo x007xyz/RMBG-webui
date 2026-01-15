@@ -13,6 +13,14 @@ dist-ssr
 dev-dist
 *.local
 
+# Model files (downloaded models should not be committed)
+models/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
